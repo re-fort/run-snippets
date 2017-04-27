@@ -7,7 +7,7 @@ run-snippets
 この拡張機能を使用するには、手動でスニペットを作成し、ビルドしたパッケージを読み込む必要があります。  
 `webpack`でバンドルしているので、スニペット内でnpmパッケージをインポートしたり、ES2015構文を使用可能です。
 
-## demo
+## デモ
 ![screenshot](https://raw.githubusercontent.com/re-fort/run-snippets/master/demo/run-snippets.gif)
 
 ## セットアップ
