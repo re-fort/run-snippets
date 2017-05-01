@@ -52,13 +52,21 @@ chrome.runtime.sendMessage({ result: {
 }})
 ```
 
-Here's result strucuture.
+Here's `result` strucuture.
 
 |property|description|required|type|
 |:-|:-|:-|:-|
 |component|component to display result|yes|string(notification or message)|
 |message|message to display in result|yes|string|
 |type|notification style to display in result|yes|string(info, success, warning, danger)|
+|options|optional features|no|array|
+
+The object to pass to the `options` array.
+
+|action|parameter|
+|:-|:-|
+|copy|string(to be copied to clipboard)|
+|setLocalStorage|array(Key and value to set to local storage)|
 
 ## Load your builded extension
 ### Chrome

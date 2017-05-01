@@ -50,13 +50,22 @@ chrome.runtime.sendMessage({ result: {
 }})
 ```
 
-実行結果の構造はこちらです。
+`result`の構造はこちらです。
 
 |プロパティ|説明|必須|型|
 |:-|:-|:-|:-|
 |component|結果に表示するコンポーネント|はい|string(notification or message)|
 |message|結果に表示するメッセージ|はい|string|
 |type|結果に表示する通知スタイル|はい|string(info, success, warning, danger)|
+|options|オプション機能|いいえ|array|
+
+`options`の配列に渡すオブジェクトです。
+
+|action|parameter|
+|:-|:-|
+|copy|string(クリップボードにコピーする文字列)|
+|setLocalStorage|array(Local Storageにセットするキー、値)|
+
 
 ## ビルドしたパッケージの読み込み
 ### Chrome
