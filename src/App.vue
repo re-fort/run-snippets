@@ -9,6 +9,7 @@
 import Vue from 'vue'
 import TreeItem from './components/TreeItem.vue'
 import { treeData } from './config/tree.js'
+import { message } from './config/message.js'
 import { openNotification } from './components/Notification.vue'
 import { openMessage } from './components/Message.vue'
 
@@ -40,8 +41,53 @@ export default {
           showCloseButton: true
         })
       }
+      if (result.options) {
+        this.handleAdditionalOptions(result.options)
+      }
     },
+    handleAdditionalOptions: function (options) {
+      for (let option of options) {
+        if (!this.check(option)) break
 
+        if (option.action === 'copy') {
+          this.copyToClipboard(option.param)
+        }
+        if (option.action === 'setLocalStorage') {
+          this.setLocalStorage(option.param[0], option.param[1])
+        }
+      }
+    },
+    check: function (option) {
+      let error = { component: 'message', type: 'danger' }
+
+      if (option.action === 'copy') {
+        if (!option.param) {
+          error.message = `${message.ERROR_NOT_ENOUGH_PARAMETER}: ${option.action}`
+          this.displayResult(error)
+          return false
+        }
+      }
+      if (option.action === 'setLocalStorage') {
+        if (!option.param || option.param.length < 2) {
+          error.message = `${message.ERROR_NOT_ENOUGH_PARAMETER}: ${option.action}`
+          this.displayResult(error)
+          return false
+        }
+      }
+      return true
+    },
+    copyToClipboard: function (text) {
+      let input = document.createElement('textarea')
+      document.body.appendChild(input)
+      input.value = text
+      input.focus()
+      input.select()
+      document.execCommand('Copy')
+      input.remove()
+    },
+    setLocalStorage: function (key, value) {
+      localStorage.setItem(key, value)
+    }
   }
 }
 </script>

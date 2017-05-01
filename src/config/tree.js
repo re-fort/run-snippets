@@ -7,6 +7,8 @@ export const treeData = {
     { name: 'getTitle', description: 'Get current page title', snippet: 'getTitle' },
     { name: 'simplePromise', description: 'Simple Promise usage', snippet: 'simplePromise' },
     { name: 'displayGithubUserAvatar', description: 'Note: Please execute on Github user page', snippet: 'displayGithubUserAvatar', domain: 'github.com' },
+    { name: 'copyToClipboard', description: 'Copy datetime to clipboard', snippet: 'copyToClipboard' },
+    { name: 'setLocalStorage', description: 'Set datetime to LocalStorage', snippet: 'setLocalStorage' },
     { name: 'child', children: [
       { name: 'nested child', children: [
         { name: 'nested child', snippet: 'nestedChild' },
