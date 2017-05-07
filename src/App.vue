@@ -16,7 +16,7 @@ import { openMessage } from './components/Message.vue'
 export default {
   name: 'app',
   components: {
-    'tree-item': TreeItem
+    TreeItem
   },
   data () {
     return {

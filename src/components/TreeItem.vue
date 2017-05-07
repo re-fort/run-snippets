@@ -1,6 +1,7 @@
 <template lang="pug">
   li
     div(:class="{'is-loading': !isFolder && isRunning}", class="control")
+      modal(:visible="show", :form="form", v-show="show", @ok="runSnippet", @cancel="closeModal")
       tooltip(:label="model.description", :size="getTooltipSize", placement="top-right")
         a(:class="{bold: isFolder, 'menu-label': isFolder}", @click="click")
           span(v-if="isFolder" class="icon is-small")
@@ -20,11 +21,13 @@
 <script>
 import { message } from '../config/message.js'
 import Tooltip from 'vue-bulma-tooltip'
+import Modal from './Modal.vue'
 
 export default {
   name: 'tree-item',
   components: {
-    Tooltip
+    Tooltip,
+    Modal
   },
   props: {
     model: Object
@@ -32,7 +35,9 @@ export default {
   data () {
     return {
       open: this.model.open ? this.model.open : false,
-      isRunning: false
+      isRunning: false,
+      show: false,
+      form: []
     }
   },
   computed: {
@@ -56,13 +61,23 @@ export default {
       this.open = !this.open
     },
     run: function () {
+      if (this.model.form) {
+        this.showModal()
+      } else {
+        this.runSnippet()
+      }
+    },
+    runSnippet: function (param) {
+      if (this.show) this.show = false
       this.checkBefore()
       .then(url => {
         if (this.check(url)) {
           this.addListener()
           this.isRunning = true
           chrome.tabs.query({ active: true }, (tab) => {
-            chrome.tabs.executeScript(tab[0].id, { file: `./snippets/${this.model.snippet}.js` })
+            chrome.tabs.executeScript(tab[0].id, { code: `var form = ${JSON.stringify(param)};` }, () => {
+              chrome.tabs.executeScript(tab[0].id, { file: `./snippets/${this.model.snippet}.js` })
+            })
           })
         }
       })
@@ -110,6 +125,13 @@ export default {
     },
     callParent: function (result) {
       this.$emit('result', result)
+    },
+    showModal: function () {
+      this.form = require(`../forms/${this.model.form}.js`)
+      this.show = true
+    },
+    closeModal: function () {
+      this.show = false
     }
   }
 }
