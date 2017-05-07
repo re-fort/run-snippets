@@ -2,11 +2,12 @@ const path = require('path')
 const webpack = require('webpack')
 const glob = require('glob')
 
+const _snippets = 'snippets'
 let snippets = {}
 
-glob.sync('./src/snippets/*.js').map((file) => {
-  let basename = path.basename(file, '.js')
-  snippets[`snippets/${basename}`] = file
+glob.sync(`./src/${_snippets}/**/*.js`).map((file) => {
+  let pathname = file.replace(`./src/${_snippets}/`, '').replace('.js', '')
+  snippets[`${_snippets}/${pathname}`] = file
 })
 
 module.exports = {

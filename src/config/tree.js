@@ -12,7 +12,7 @@ export const treeData = {
     { name: 'searchGithubRepo', description: 'Search Github repo', form: 'searchGithubRepoForm', snippet: 'searchGithubRepo' },
     { name: 'child', children: [
       { name: 'nested child', children: [
-        { name: 'nested child', snippet: 'nestedChild' },
+        { name: 'nested child', snippet: 'subfolder/nestedChild' },
       ] },
     ] }
   ]
