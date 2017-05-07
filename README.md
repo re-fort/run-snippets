@@ -38,6 +38,7 @@ npm install or yarn install
 |name|snippet name|yes|string|
 |description|snippet description|no|string|
 |open|open/close status of a folder|no|boolean|
+|form|form name before executing the snippet|no|string|
 |snippet|snippet's name to execute|yes(if it is not a folder)|string|
 |domain|domain permitted to execute snippet|no|string(Regex)
 |children|children element|no|array|
@@ -67,6 +68,16 @@ The object to pass to the `options` array.
 |:-|:-|
 |copy|string(to be copied to clipboard)|
 |setLocalStorage|array(Key and value to set to local storage)|
+
+When using the input form, you can refer to the value entered in the form `form.id`.
+
+### your_form.js
+|property|description|required|type|
+|:-|:-|:-|:-|
+|type|input type|yes|string(text, checkbox, radio, select)|
+|id|ID used for reference in the snippet|yes|string|
+|label|label used for the description of input form|no|string|
+|value|-|yes|string(text, checkbox) or array(radio, select)|
 
 ## Load your builded extension
 ### Chrome

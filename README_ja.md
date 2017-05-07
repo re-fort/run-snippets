@@ -36,6 +36,7 @@ npm install or yarn install
 |name|スニペット名|はい|string|
 |description|スニペットの説明|いいえ|string|
 |open|フォルダの開閉状態|いいえ|boolean|
+|form|スニペット実行前に入力するフォーム名|いいえ|string|
 |snippet|実行するスニペット名|はい(フォルダでない場合)|string|
 |domain|スニペットの実行を許可するドメイン|いいえ|string(Regex)
 |children|子要素|いいえ|array|
@@ -66,6 +67,15 @@ chrome.runtime.sendMessage({ result: {
 |copy|string(クリップボードにコピーする文字列)|
 |setLocalStorage|array(Local Storageにセットするキー、値)|
 
+入力フォームを使用した場合、`form.id`といった形式で入力した値を参照できます。
+
+### your_form.js
+|プロパティ|説明|必須|型|
+|:-|:-|:-|:-|
+|type|入力形式|はい|string(text, checkbox, radio, select)|
+|id|スニペット内で参照するために使うID|はい|string|
+|label|項目の説明に使用するラベル|いいえ|string|
+|value|値|はい|string(text, checkbox) or array(radio, select)|
 
 ## ビルドしたパッケージの読み込み
 ### Chrome
