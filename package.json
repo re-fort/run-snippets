@@ -29,7 +29,7 @@
     "rimraf": "^2.6.1",
     "sass-loader": "^5.0.1",
     "vue": "^2.2.6",
-    "vue-bulma-message": "^1.1.1",
+    "vue-bulma-message": "https://github.com/re-fort/message.git",
     "vue-bulma-modal": "https://github.com/re-fort/modal.git",
     "vue-bulma-notification": "^1.1.1",
     "vue-bulma-tooltip": "^1.0.3",

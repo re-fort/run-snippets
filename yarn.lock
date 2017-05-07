@@ -3534,9 +3534,9 @@ void-elements@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
 
-vue-bulma-message@^1.1.1:
+"vue-bulma-message@https://github.com/re-fort/message.git":
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/vue-bulma-message/-/vue-bulma-message-1.1.1.tgz#a3c23e706deced511321f11862b7124741d8ef0d"
+  resolved "https://github.com/re-fort/message.git#bdd20c9d34e5274a5a1db134f29e64ee9a361ebb"
 
 "vue-bulma-modal@https://github.com/re-fort/modal.git":
   version "1.0.1"
