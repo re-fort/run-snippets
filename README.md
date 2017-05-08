@@ -5,12 +5,13 @@ run-snippets
 
 Chrome and Firefox extension to run arbitrarily snippets.  
 To use this extension, you have to add snippets manually and load builded package.  
-Since bundle with `webpack`, you can import npm packages and use ES2015 syntax in your snippets.
+Since bundle with `webpack`, you can import npm packages and use ES2015 syntax in your snippets.  
+Refer to the [demo](https://github.com/re-fort/run-snippets/tree/demo) branch for demonstration implementation.
 
 [日本語](https://github.com/re-fort/run-snippets/blob/master/README_ja.md)
 
 ## demo
-![screenshot](https://raw.githubusercontent.com/re-fort/run-snippets/master/demo/run-snippets.gif)
+![screenshot](https://raw.githubusercontent.com/re-fort/run-snippets/demo/demo/run-snippets.gif)
 
 ## Setup
 ```

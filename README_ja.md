@@ -5,10 +5,11 @@ run-snippets
 
 任意のスニペットを実行するChrome & Firefox拡張機能です。  
 この拡張機能を使用するには、手動でスニペットを作成し、ビルドしたパッケージを読み込む必要があります。  
-`webpack`でバンドルしているので、スニペット内でnpmパッケージをインポートしたり、ES2015構文を使用可能です。
+`webpack`でバンドルしているので、スニペット内でnpmパッケージをインポートしたり、ES2015構文を使用可能です。  
+デモ実装は[demo](https://github.com/re-fort/run-snippets/tree/demo)ブランチを参照してください。
 
 ## デモ
-![screenshot](https://raw.githubusercontent.com/re-fort/run-snippets/master/demo/run-snippets.gif)
+![screenshot](https://raw.githubusercontent.com/re-fort/run-snippets/demo/demo/run-snippets.gif)
 
 ## セットアップ
 ```
