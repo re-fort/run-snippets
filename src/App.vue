@@ -53,7 +53,7 @@ export default {
           this.copyToClipboard(option.param)
         }
         if (option.action === 'setLocalStorage') {
-          this.setLocalStorage(option.param[0], option.param[1])
+          for (let param of option.param) { this.setLocalStorage(param.key, param.value) }
         }
       }
     },
@@ -68,7 +68,7 @@ export default {
         }
       }
       if (option.action === 'setLocalStorage') {
-        if (!option.param || option.param.length < 2) {
+        if (!option.param || option.param.length < 1) {
           error.message = `${message.ERROR_NOT_ENOUGH_PARAMETER}: ${option.action}`
           this.displayResult(error)
           return false

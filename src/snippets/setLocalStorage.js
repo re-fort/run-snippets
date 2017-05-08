@@ -6,6 +6,6 @@ chrome.runtime.sendMessage({ result: {
   type: 'info',
   options: [
     { action: 'copy', param: date.toString() },
-    { action: 'setLocalStorage', param: ['datetime', date.toString()] }
+    { action: 'setLocalStorage', param: [ { key: 'datetime', value: date.toString() } ] }
   ]
 }})

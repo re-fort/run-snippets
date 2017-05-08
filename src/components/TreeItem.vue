@@ -75,7 +75,7 @@ export default {
           this.addListener()
           this.isRunning = true
           chrome.tabs.query({ active: true }, (tab) => {
-            chrome.tabs.executeScript(tab[0].id, { code: `var form = ${JSON.stringify(param)};` }, () => {
+            chrome.tabs.executeScript(tab[0].id, { code: this.injectionCode(param) }, () => {
               chrome.tabs.executeScript(tab[0].id, { file: `./snippets/${this.model.snippet}.js` })
             })
           })
@@ -84,6 +84,17 @@ export default {
       .catch(e => {
         console.error(e)
       })
+    },
+    injectionCode: function (param) {
+      return this.injectionForm(param) + this.injectionLocalStorage()
+    },
+    injectionForm: function (param) {
+      return `var form = ${JSON.stringify(param)};`
+    },
+    injectionLocalStorage: function () {
+      let obj = {}
+      Object.keys(localStorage).forEach(key => { obj[key] = localStorage[key] })
+      return `var ls = ${JSON.stringify(obj)};`
     },
     checkBefore: function () {
       return new Promise((resolve, reject) => {
