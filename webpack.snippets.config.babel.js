@@ -10,6 +10,8 @@ glob.sync(`./src/${_snippets}/**/*.js`).map((file) => {
   snippets[`${_snippets}/${pathname}`] = file
 })
 
+if (Object.keys(snippets).length === 0) process.exit()
+
 module.exports = {
   entry: snippets,
   output: {
