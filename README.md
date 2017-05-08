@@ -70,6 +70,7 @@ The object to pass to the `options` array.
 |setLocalStorage|array(Key and value to set to local storage)|
 
 When using the input form, you can refer to the value entered in the form `form.id`.
+You can refer to the value set in local storage `ls.key`.
 
 ### your_form.js
 |property|description|required|type|

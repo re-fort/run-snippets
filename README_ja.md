@@ -68,6 +68,7 @@ chrome.runtime.sendMessage({ result: {
 |setLocalStorage|array(Local Storageにセットするキー、値)|
 
 入力フォームを使用した場合、`form.id`といった形式で入力した値を参照できます。
+ローカルストレージに設定した値は、`ls.key`といった形式で参照できます。
 
 ### your_form.js
 |プロパティ|説明|必須|型|
