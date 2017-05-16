@@ -70,16 +70,16 @@ The object to pass to the `options` array.
 |copy|string(to be copied to clipboard)|
 |setLocalStorage|array(Key and value to set to local storage)|
 
-When using the input form, you can refer to the value entered in the form `form.id`.
+When using the input form, you can refer to the value entered in the form `form.id`.  
 You can refer to the value set in local storage `ls.key`.
 
 ### your_form.js
 |property|description|required|type|
 |:-|:-|:-|:-|
-|type|input type|yes|string(text, checkbox, radio, select)|
+|type|input type|yes|string(text, checkbox, radio, select, textarea)|
 |id|ID used for reference in the snippet|yes|string|
 |label|label used for the description of input form|no|string|
-|value|-|yes|string(text, checkbox) or array(radio, select)|
+|value|-|yes|string(text, checkbox, textarea) or array(radio, select)|
 
 ## Load your builded extension
 ### Chrome

@@ -68,16 +68,16 @@ chrome.runtime.sendMessage({ result: {
 |copy|string(クリップボードにコピーする文字列)|
 |setLocalStorage|array(Local Storageにセットするキー、値)|
 
-入力フォームを使用した場合、`form.id`といった形式で入力した値を参照できます。
+入力フォームを使用した場合、`form.id`といった形式で入力した値を参照できます。  
 ローカルストレージに設定した値は、`ls.key`といった形式で参照できます。
 
 ### your_form.js
 |プロパティ|説明|必須|型|
 |:-|:-|:-|:-|
-|type|入力形式|はい|string(text, checkbox, radio, select)|
+|type|入力形式|はい|string(text, checkbox, radio, select, textarea)|
 |id|スニペット内で参照するために使うID|はい|string|
 |label|項目の説明に使用するラベル|いいえ|string|
-|value|値|はい|string(text, checkbox) or array(radio, select)|
+|value|値|はい|string(text, checkbox, textarea) or array(radio, select)|
 
 ## ビルドしたパッケージの読み込み
 ### Chrome
