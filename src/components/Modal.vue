@@ -16,6 +16,8 @@
         span(class="select")
           select(:id="field.id")
             option(v-for="option in field.value" :value="option.value") {{ option.label }}
+      p(class="control" v-else-if="field.type === 'textarea'")
+        textarea(class="textarea", :id="field.id") {{ field.value }}
 </template>
 
 <script>
@@ -32,12 +34,13 @@ export default {
   data () {
     return {
       inputs: {},
-      controls: ['text', 'checkbox', 'radio', 'select'],
+      controls: ['text', 'checkbox', 'radio', 'select', 'textarea'],
       selector: {
         text: 'input[type="text"]',
         checkbox: 'input[type="checkbox"]',
         radio: 'input[type="radio"]:checked',
-        select: 'select'
+        select: 'select',
+        textarea: 'textarea'
       }
     }
   },
@@ -58,6 +61,7 @@ export default {
       switch (control) {
         case 'text':
         case 'select':
+        case 'textarea':
           this.inputs[el.id] = el.value
           break
         case 'checkbox':
