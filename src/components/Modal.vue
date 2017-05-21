@@ -2,10 +2,14 @@
   card-modal(:visible="true", transition="zoom", @ok="ok", @cancel="cancel")
     div(class="field" v-for="field in form")
       label(class="label") {{ field.label }}
-      p(class="control" v-if="field.type === 'text'")
+      p(class="control" v-if="field.type === 'text'", :class="getIconClass(field.icon)")
         input(class="input" type="text", :id="field.id", :value="field.value", :class="field.class", :disabled="field.disabled")
-      p(class="control" v-if="field.type === 'password'")
+        span(class="icon" v-if="field.icon", :class="field.icon.class")
+          i(class="fa", :class="field.icon.type")
+      p(class="control" v-if="field.type === 'password'", :class="getIconClass(field.icon)")
         input(class="input" type="password", :id="field.id", :value="field.value", :class="field.class", :disabled="field.disabled")
+        span(class="icon" v-if="field.icon", :class="field.icon.class")
+          i(class="fa", :class="field.icon.type")
       p(class="control" v-else-if="field.type === 'checkbox'")
         label(class="checkbox", :disabled="field.disabled")
           input(type="checkbox", :id="field.id", :class="field.class", :disabled="field.disabled")
@@ -74,6 +78,10 @@ export default {
           this.inputs[el.name] = el.value
           break
       }
+    },
+    getIconClass: function (icon) {
+      if (!icon) return ''
+      return icon.class.includes('is-right') ? 'has-icons-right' : 'has-icons-left'
     }
   }
 }
