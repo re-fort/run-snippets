@@ -4,6 +4,8 @@
       label(class="label") {{ field.label }}
       p(class="control" v-if="field.type === 'text'")
         input(class="input" type="text", :id="field.id", :value="field.value")
+      p(class="control" v-if="field.type === 'password'")
+        input(class="input" type="password", :id="field.id", :value="field.value")
       p(class="control" v-else-if="field.type === 'checkbox'")
         label(class="checkbox")
           input(type="checkbox", :id="field.id")
@@ -34,9 +36,10 @@ export default {
   data () {
     return {
       inputs: {},
-      controls: ['text', 'checkbox', 'radio', 'select', 'textarea'],
+      controls: ['text', 'password','checkbox', 'radio', 'select', 'textarea'],
       selector: {
         text: 'input[type="text"]',
+        password: 'input[type="password"]',
         checkbox: 'input[type="checkbox"]',
         radio: 'input[type="radio"]:checked',
         select: 'select',
