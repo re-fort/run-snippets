@@ -3,20 +3,20 @@
     div(class="field" v-for="field in form")
       label(class="label") {{ field.label }}
       p(class="control" v-if="field.type === 'text'")
-        input(class="input" type="text", :id="field.id", :value="field.value")
+        input(class="input" type="text", :id="field.id", :value="field.value", :class="field.class", :disabled="field.disabled")
       p(class="control" v-if="field.type === 'password'")
-        input(class="input" type="password", :id="field.id", :value="field.value")
+        input(class="input" type="password", :id="field.id", :value="field.value", :class="field.class", :disabled="field.disabled")
       p(class="control" v-else-if="field.type === 'checkbox'")
-        label(class="checkbox")
-          input(type="checkbox", :id="field.id")
+        label(class="checkbox", :disabled="field.disabled")
+          input(type="checkbox", :id="field.id", :class="field.class", :disabled="field.disabled")
           | {{ field.value }}
       p(class="control" v-else-if="field.type === 'radio'")
-        label(class="radio" v-for="radio in field.value")
-          input(type="radio", :name="field.id", :value="radio.value", :checked="true")
+        label(class="radio" v-for="radio in field.value", :disabled="field.disabled")
+          input(type="radio", :name="field.id", :value="radio.value", :class="field.class", :checked="true", :disabled="field.disabled")
           | {{ radio.label }}
       p(class="control" v-else-if="field.type === 'select'")
-        span(class="select")
-          select(:id="field.id")
+        span(class="select", :class="[{ 'is-disabled': field.disabled }, field.class]")
+          select(:id="field.id", :disabled="field.disabled")
             option(v-for="option in field.value" :value="option.value") {{ option.label }}
       p(class="control" v-else-if="field.type === 'textarea'")
         textarea(class="textarea", :id="field.id") {{ field.value }}
