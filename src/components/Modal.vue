@@ -1,6 +1,8 @@
 <template lang="pug">
-  card-modal(:visible="true", transition="zoom", @ok="ok", @cancel="cancel")
-    div(class="field" v-for="field in form")
+  card-modal(:visible="true", transition="zoom")
+    h1(slot="header" v-if="form.header")
+      p(class="modal-card-title", :class="form.header.class") {{ form.header.text }}
+    div(class="field" v-for="field in form.fields" slot="body")
       label(class="label") {{ field.label }}
       p(class="control" v-if="field.type === 'text'", :class="getIconClass(field.icon)")
         input(class="input" type="text", :id="field.id", :value="field.value", :class="field.class", :disabled="field.disabled")
@@ -24,6 +26,11 @@
             option(v-for="option in field.value" :value="option.value") {{ option.label }}
       p(class="control" v-else-if="field.type === 'textarea'")
         textarea(class="textarea", :id="field.id") {{ field.value }}
+    template(slot="footer" v-if="form.footer")
+      a(class="button", :class="form.footer.submit.class", @click="submit")
+        | {{ form.footer.submit.text }}
+      a(class="button", :class="form.footer.cancel.class", @click="cancel")
+        | {{ form.footer.cancel.text }}
 </template>
 
 <script>
@@ -35,7 +42,7 @@ export default {
     CardModal
   },
   props: {
-    form: Array
+    form: Object
   },
   data () {
     return {
@@ -52,9 +59,9 @@ export default {
     }
   },
   methods: {
-    ok: function () {
+    submit: function () {
       this.bindInputs()
-      this.$emit('ok', this.inputs)
+      this.$emit('submit', this.inputs)
     },
     cancel: function () {
       this.$emit('cancel')

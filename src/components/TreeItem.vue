@@ -1,7 +1,7 @@
 <template lang="pug">
   li
     div(:class="{'is-loading': !isFolder && isRunning}", class="control")
-      modal(:visible="show", :form="form", v-show="show", @ok="runSnippet", @cancel="closeModal")
+      modal(:visible="show", :form="form", v-show="show", @submit="runSnippet", @cancel="closeModal")
       tooltip(:label="model.description", :size="getTooltipSize", placement="top-right")
         a(:class="{bold: isFolder, 'menu-label': isFolder}", @click="click")
           span(v-if="isFolder" class="icon is-small")
@@ -37,7 +37,7 @@ export default {
       open: this.model.open ? this.model.open : false,
       isRunning: false,
       show: false,
-      form: []
+      form: {}
     }
   },
   computed: {
@@ -138,11 +138,32 @@ export default {
       this.$emit('result', result)
     },
     showModal: function () {
-      this.form = require(`../forms/${this.model.form}.js`)
+      let defaultForm = { header: {}, footer: { submit: { text: 'OK' }, cancel: { text: 'cancel' } } }
+      this.form = this.mergeDeep(defaultForm, require(`../forms/${this.model.form}.js`))
       this.show = true
     },
     closeModal: function () {
       this.show = false
+    },
+    isObject: function (item) {
+      return (item && typeof item === 'object' && !Array.isArray(item))
+    },
+    mergeDeep: function (target, ...sources) {
+      if (!sources.length) return target
+      const source = sources.shift()
+
+      if (this.isObject(target) && this.isObject(source)) {
+        for (const key in source) {
+          if (this.isObject(source[key])) {
+            if (!target[key]) Object.assign(target, { [key]: {} })
+            this.mergeDeep(target[key], source[key])
+          } else {
+            Object.assign(target, { [key]: source[key] })
+          }
+        }
+      }
+
+      return this.mergeDeep(target, ...sources)
     }
   }
 }
