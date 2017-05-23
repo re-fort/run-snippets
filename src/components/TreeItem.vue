@@ -138,7 +138,7 @@ export default {
       this.$emit('result', result)
     },
     showModal: function () {
-      let defaultForm = { header: {}, footer: { submit: { text: 'OK' }, cancel: { text: 'cancel' } } }
+      let defaultForm = { header: {}, footer: { submit: { text: 'OK', class: 'is-primary' }, cancel: { text: 'cancel' } } }
       this.form = this.mergeDeep(defaultForm, require(`../forms/${this.model.form}.js`))
       this.show = true
     },
