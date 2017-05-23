@@ -55,6 +55,9 @@ export default {
         if (option.action === 'setLocalStorage') {
           for (let param of option.param) { this.setLocalStorage(param.key, param.value) }
         }
+        if (option.action === 'removeLocalStorage') {
+          for (let param of option.param) { this.removeLocalStorage(param.key) }
+        }
       }
     },
     check: function (option) {
@@ -67,7 +70,7 @@ export default {
           return false
         }
       }
-      if (option.action === 'setLocalStorage') {
+      if (option.action === 'setLocalStorage' || option.action === 'removeLocalStorage') {
         if (!option.param || option.param.length < 1) {
           error.message = `${message.ERROR_NOT_ENOUGH_PARAMETER}: ${option.action}`
           this.displayResult(error)
@@ -87,6 +90,9 @@ export default {
     },
     setLocalStorage: function (key, value) {
       localStorage.setItem(key, value)
+    },
+    removeLocalStorage: function (key) {
+      localStorage.removeItem(key)
     }
   }
 }
