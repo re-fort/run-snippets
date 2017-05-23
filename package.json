@@ -10,7 +10,8 @@
     "build:app": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "build:snippet": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.snippets.config.babel.js",
     "clean": "rimraf ./dist",
-    "zip:firefox": "cd dist && cross-zip ./ ../run-snippets.xpi"
+    "zip:firefox": "cd dist && cross-zip ./ ../run-snippets.xpi",
+    "zip:chrome": "cd dist && cross-zip ./ ../run-snippets.zip"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
