@@ -4,9 +4,9 @@ run-snippets
 ======================
 
 Chrome and Firefox extension to run arbitrarily snippets.  
-To use this extension, you have to add snippets manually and load builded package.  
-Since bundle with `webpack`, you can import npm packages and use ES2015 syntax in your snippets.  
-Refer to the [demo](https://github.com/re-fort/run-snippets/tree/demo) branch for demonstration implementation.
+To use this extension, you have to add snippets manually and load a built package.  
+Since it's bundled with `webpack`, you can import npm packages and use ES2015 syntax in your snippets.  
+Refer to the [demo](https://github.com/re-fort/run-snippets/tree/demo) branch for an implementation sample.
 
 [日本語](https://github.com/re-fort/run-snippets/blob/master/README_ja.md)
 
@@ -23,12 +23,12 @@ npm install or yarn install
 ## Usage
 - `vim src/config/tree.js`
 - `touch src/snippets/your_snippet.js`
-- `vim src/config/your_snippet.js`
+- `vim src/snippets/your_snippet.js`
 - `npm run dev`
 - `npm run build`
 
 ## npm scripts
-- `npm run dev` start waching files with webpack
+- `npm run dev` start watching files with webpack
 - `npm run build` minify and build with source map
 - `npm run zip:firefox` create an xpi file for Firefox
 
@@ -40,12 +40,12 @@ npm install or yarn install
 |description|snippet description|no|string|
 |open|open/close status of a folder|no|boolean|
 |form|form name before executing the snippet|no|string|
-|snippet|snippet's name to execute|yes(if it is not a folder)|string|
+|snippet|snippet name to execute|yes(if it is not a folder)|string|
 |domain|domain permitted to execute snippet|no|string(Regex)
 |children|children element|no|array|
 
 ### your_snippet.js
-To display snippet's result in Chrome(Firefox) extension, you have to send a message as below.
+To display snippet result in Chrome(Firefox) extension, you have to send a message as below.
 ```js
 chrome.runtime.sendMessage({ result: {
   component: 'notification',
@@ -54,7 +54,7 @@ chrome.runtime.sendMessage({ result: {
 }})
 ```
 
-Here's `result` strucuture.
+Here's `result` structure.
 
 |property|description|required|type|
 |:-|:-|:-|:-|
@@ -81,16 +81,16 @@ You can refer to the value set in local storage `ls.key`.
 |label|label used for the description of input form|no|string|
 |value|-|yes|string(text, checkbox, textarea) or array(radio, select)|
 
-## Load your builded extension
+## Load your built extension
 ### Chrome
-1. access `chrome://extensions/`
-1. click `Load unpacked extension`
-1. select the `dist` folder
-1. ready to use your custom extension :)
+1. Go to `chrome://extensions/`
+1. Click `Load unpacked extension`
+1. Select the `dist` folder
+1. Ready to use your custom extension :)
 
 ### Firefox
 1. `npm run zip:firefox` after `npm run build`
-1. access `https://addons.mozilla.org/en-US/developers/addon/submit/distribution`
-1. sign your `run-snippets.xpi` and download it
-1. drag-and-drop `run-snippets.xpi` in your browser
-1. ready to use your custom extension :)
+1. Access `https://addons.mozilla.org/en-US/developers/addon/submit/distribution`
+1. Sign your `run-snippets.xpi` and download it
+1. Drag-and-drop `run-snippets.xpi` in your browser
+1. Ready to use your custom extension :)
