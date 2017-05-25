@@ -74,7 +74,7 @@ export default {
         if (this.check(url)) {
           this.addListener()
           this.isRunning = true
-          chrome.tabs.query({ active: true }, (tab) => {
+          chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
             chrome.tabs.executeScript(tab[0].id, { code: this.injectionCode(param) }, () => {
               chrome.tabs.executeScript(tab[0].id, { file: `./snippets/${this.model.snippet}.js` })
             })
@@ -99,7 +99,7 @@ export default {
     checkBefore: function () {
       return new Promise((resolve, reject) => {
         if (this.model.domain) {
-          chrome.tabs.query({ active: true }, (tab) => {
+          chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
             resolve(tab[0].url)
           })
         } else {
