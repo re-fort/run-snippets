@@ -30,7 +30,8 @@ npm install or yarn install
 ## npm scripts
 - `npm run dev` start watching files with webpack
 - `npm run build` minify and build with source map
-- `npm run zip:firefox` create an xpi file for Firefox
+- `npm run zip:firefox` create xpi file for Firefox
+- `npm run zip:chrome` create zip file to publish Chrome extension
 
 ## Config
 ### tree.js
@@ -40,7 +41,7 @@ npm install or yarn install
 |description|snippet description|no|string|
 |open|open/close status of a folder|no|boolean|
 |form|form name before executing the snippet|no|string|
-|snippet|snippet name to execute|yes(if it is not a folder)|string|
+|snippet|snippet name to execute|yes(only if it is not a folder)|string|
 |domain|domain permitted to execute snippet|no|string(Regex)
 |children|children element|no|array|
 
@@ -68,18 +69,71 @@ The object to pass to the `options` array.
 |action|parameter|
 |:-|:-|
 |copy|string(to be copied to clipboard)|
-|setLocalStorage|array(Key and value to set to local storage)|
+|setLocalStorage|array(key and value to set to local storage)|
+|removeLocalStorage|array(key to remove from local storage)|
 
 When using the input form, you can refer to the value entered in the form `form.id`.  
 You can refer to the value set in local storage `ls.key`.
 
 ### your_form.js
+The form consists of three elements.
+
 |property|description|required|type|
 |:-|:-|:-|:-|
-|type|input type|yes|string(text, checkbox, radio, select, textarea)|
-|id|ID used for reference in the snippet|yes|string|
-|label|label used for the description of input form|no|string|
-|value|-|yes|string(text, checkbox, textarea) or array(radio, select)|
+|header|header element|no|object|
+|fields|fields element|yes|array|
+|footer|footer element|no|object|
+
+- header
+
+  |property|description|required|type|
+  |:-|:-|:-|:-|
+  |text|title|no|string|
+  |class|class attribute|no|string|
+
+- fields
+
+  |property|description|required|type|
+  |:-|:-|:-|:-|
+  |type|input type|yes|string(text, password, checkbox, radio, select, textarea)|
+  |id|ID used for reference in the snippet|yes|string|
+  |class|class attribute|no|string|
+  |label|label used for the description of input form|no|string|
+  |value|-|yes|string(text, checkbox, textarea) or array(radio, select)|
+  |disabled|-|no|boolean|
+  |icon|[Font Awesome](http://fontawesome.io/icons/) icon|no|object|
+
+  - icon
+
+    |property|description|required|type|
+    |:-|:-|:-|:-|
+    |type|icon type|yes|string(e.g. fa-github)|
+    |class|class attribute|no|string(is-left or is-right default:`is-left`)|
+
+- footer
+
+  |property|description|required|type|
+  |:-|:-|:-|:-|
+  |submit|submit button|no|object(text, class)|
+  |cancel|cancel button|no|object(text, class)|
+
+  - submit
+
+    |property|description|required|type|
+    |:-|:-|:-|:-|
+    |text|text|no|string(default:`OK`)|
+    |class|class attribute|no|string(default:`is-primary`)|
+
+  - cancel
+
+    |property|description|required|type|
+    |:-|:-|:-|:-|
+    |text|text|no|string(default:`cancel`)|
+    |class|class attribute|no|string|
+
+## Customize
+### Bulma
+Edit `bulma.sass` and you can easily customize Bulma with your own colors and variables.
 
 ## Load your built extension
 ### Chrome
@@ -90,7 +144,7 @@ You can refer to the value set in local storage `ls.key`.
 
 ### Firefox
 1. `npm run zip:firefox` after `npm run build`
-1. Access `https://addons.mozilla.org/en-US/developers/addon/submit/distribution`
+1. Go to `https://addons.mozilla.org/en-US/developers/addon/submit/distribution`
 1. Sign your `run-snippets.xpi` and download it
 1. Drag-and-drop `run-snippets.xpi` in your browser
 1. Ready to use your custom extension :)

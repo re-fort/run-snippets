@@ -29,6 +29,7 @@ npm install or yarn install
 - `npm run dev` webpackでのファイル監視を開始します。 
 - `npm run build` 圧縮しソースマップ付きでビルドを行います。
 - `npm run zip:firefox` Firefox用にxpiファイルを作成します。
+- `npm run zip:chrome` Chrome用にzipファイルを作成します。
 
 ## 設定
 ### tree.js
@@ -67,17 +68,70 @@ chrome.runtime.sendMessage({ result: {
 |:-|:-|
 |copy|string(クリップボードにコピーする文字列)|
 |setLocalStorage|array(Local Storageにセットするキー、値)|
+|removeLocalStorage|array(Local Storageにセットするキー)|
 
 入力フォームを使用した場合、`form.id`といった形式で入力した値を参照できます。  
 ローカルストレージに設定した値は、`ls.key`といった形式で参照できます。
 
 ### your_form.js
+フォームは3つの要素で構成されています。
+
 |プロパティ|説明|必須|型|
 |:-|:-|:-|:-|
-|type|入力形式|はい|string(text, checkbox, radio, select, textarea)|
-|id|スニペット内で参照するために使うID|はい|string|
-|label|項目の説明に使用するラベル|いいえ|string|
-|value|値|はい|string(text, checkbox, textarea) or array(radio, select)|
+|header|ヘッダー|いいえ|object|
+|fields|フィールド|はい|array|
+|footer|フッター|いいえ|object|
+
+- header
+
+  |プロパティ|説明|必須|型|
+  |:-|:-|:-|:-|
+  |text|タイトル|いいえ|string|
+  |class|クラス|いいえ|string|
+
+- fields
+
+  |プロパティ|説明|必須|型|
+  |:-|:-|:-|:-|
+  |type|入力形式|はい|string(text, checkbox, radio, select, textarea)|
+  |id|スニペット内で参照するために使うID|はい|string|
+  |class|クラス|いいえ|string|
+  |label|項目の説明に使用するラベル|いいえ|string|
+  |value|値|はい|string(text, checkbox, textarea) or array(radio, select)|
+  |disabled|操作不能|いいえ|boolean|
+  |icon|[Font Awesome](http://fontawesome.io/icons/) アイコン|いいえ|object|
+
+  - icon
+
+    |プロパティ|説明|必須|型|
+    |:-|:-|:-|:-|
+    |type|アイコンの種類|はい|string(例: fa-github)|
+    |class|クラス|いいえ|string(is-left もしくは is-right デフォルト:`is-left`)|
+
+- footer
+
+  |プロパティ|説明|必須|型|
+  |:-|:-|:-|:-|
+  |submit|submit button|いいえ|object(text, class)|
+  |cancel|cancel button|いいえ|object(text, class)|
+
+  - submit
+
+    |プロパティ|説明|必須|型|
+    |:-|:-|:-|:-|
+    |text|テキスト|いいえ|string(デフォルト:`OK`)|
+    |class|クラス|いいえ|string(デフォルト:`is-primary`)|
+
+  - cancel
+
+    |プロパティ|説明|必須|型|
+    |:-|:-|:-|:-|
+    |text|テキスト|いいえ|string(デフォルト:`cancel`)|
+    |class|クラス|いいえ|string|
+
+## カスタマイズ
+### Bulma
+`bulma.sass`を編集し、Bulmaの色や変数を簡単にカスタマイズすることができます。
 
 ## ビルドしたパッケージの読み込み
 ### Chrome
