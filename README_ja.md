@@ -57,7 +57,7 @@ chrome.runtime.sendMessage({ result: {
 
 |プロパティ|説明|必須|型|
 |:-|:-|:-|:-|
-|component|結果に表示するコンポーネント|はい|string(notification or message)|
+|component|結果に表示するコンポーネント|はい|string(notification もしくは message)|
 |message|結果に表示するメッセージ|はい|string|
 |type|結果に表示する通知スタイル|はい|string(info, success, warning, danger)|
 |options|オプション機能|いいえ|array|
@@ -97,7 +97,7 @@ chrome.runtime.sendMessage({ result: {
   |id|スニペット内で参照するために使うID|はい|string|
   |class|クラス|いいえ|string|
   |label|項目の説明に使用するラベル|いいえ|string|
-  |value|値|はい|string(text, checkbox, textarea) or array(radio, select)|
+  |value|値|はい|string(text, checkbox, textarea) もしくは array(radio, select)|
   |disabled|操作不能|いいえ|boolean|
   |icon|[Font Awesome](http://fontawesome.io/icons/) アイコン|いいえ|object|
 
@@ -106,7 +106,7 @@ chrome.runtime.sendMessage({ result: {
     |プロパティ|説明|必須|型|
     |:-|:-|:-|:-|
     |type|アイコンの種類|はい|string(例: fa-github)|
-    |class|クラス|いいえ|string(is-left もしくは is-right デフォルト:`is-left`)|
+    |class|クラス|いいえ|string(is-left もしくは is-right)|
 
 - footer
 

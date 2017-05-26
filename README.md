@@ -108,7 +108,7 @@ The form consists of three elements.
     |property|description|required|type|
     |:-|:-|:-|:-|
     |type|icon type|yes|string(e.g. fa-github)|
-    |class|class attribute|no|string(is-left or is-right default:`is-left`)|
+    |class|class attribute|yes|string(is-left or is-right)|
 
 - footer
 
