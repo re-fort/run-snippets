@@ -7,6 +7,8 @@
           span(v-if="isFolder" class="icon is-small")
             i(class="fa fa-folder-o")
           span {{ model.name }}
+          span(v-if="model.autoRun" class="icon is-small")
+            i(class="fa fa-check-circle")
           span(v-if="isFolder")
             | [{{ open ? '-' : '+' }}]
       ul(class="menu-list", v-show="open", v-if="isFolder")
@@ -53,6 +55,8 @@ export default {
     click: function () {
       if (this.isFolder) {
         this.toggle()
+      } else if (this.model.autoRun){
+        this.$emit('result', { component: 'message', type: 'warning', message: `${message.WARNING_AUTO_RUN_SNIPPET}: ${this.model.domain}`})
       } else {
         this.run()
       }

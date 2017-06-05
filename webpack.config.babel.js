@@ -5,7 +5,8 @@ const extractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   entry: {
     app: './src/main.js',
-    vendor: ['vue', 'bulma', 'font-awesome/scss/font-awesome.scss']
+    vendor: ['vue', 'bulma', 'font-awesome/scss/font-awesome.scss'],
+    content: './src/content.js'
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -82,7 +83,8 @@ module.exports = {
   plugins: [
     new extractTextPlugin('[name].css'),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
+      name: 'vendor',
+      chunks: ['app']
     })
   ],
   performance: {
