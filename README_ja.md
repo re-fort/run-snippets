@@ -37,10 +37,11 @@ npm install or yarn install
 |:-|:-|:-|:-|
 |name|スニペット名|はい|string|
 |description|スニペットの説明|いいえ|string|
-|open|フォルダの開閉状態|いいえ|boolean|
+|open|フォルダを初期状態で開くか|いいえ|boolean|
 |form|スニペット実行前に入力するフォーム名|いいえ|string|
 |snippet|実行するスニペット名|はい(フォルダでない場合)|string|
-|domain|スニペットの実行を許可するドメイン|いいえ|string(Regex)
+|domain|スニペットの実行を許可するドメイン|いいえ|string(Regex)|
+|autoRun|スニペットを自動実行するか(実行許可ドメインに該当する場合)|いいえ|boolean|
 |children|子要素|いいえ|array|
 
 ### your_snippet.js
@@ -48,7 +49,7 @@ Chrome(Firefox)拡張機能でスニペットの実行結果を表示するに�
 ```js
 chrome.runtime.sendMessage({ result: {
   component: 'notification',
-  message: date.toString(),
+  message: new Date().toString(),
   type: 'info'
 }})
 ```
@@ -112,8 +113,8 @@ chrome.runtime.sendMessage({ result: {
 
   |プロパティ|説明|必須|型|
   |:-|:-|:-|:-|
-  |submit|submit button|いいえ|object(text, class)|
-  |cancel|cancel button|いいえ|object(text, class)|
+  |submit|サブミットボタン|いいえ|object(text, class)|
+  |cancel|キャンセルボタン|いいえ|object(text, class)|
 
   - submit
 
@@ -128,6 +129,9 @@ chrome.runtime.sendMessage({ result: {
     |:-|:-|:-|:-|
     |text|テキスト|いいえ|string(デフォルト:`cancel`)|
     |class|クラス|いいえ|string|
+
+### Content Scripts
+`tree.js`内で`autoRun`オプションを`true`に設定すると、スニペットは`Content Scripts`として自動実行されます。
 
 ## カスタマイズ
 ### Bulma

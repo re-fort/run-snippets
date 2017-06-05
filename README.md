@@ -39,10 +39,11 @@ npm install or yarn install
 |:-|:-|:-|:-|
 |name|snippet name|yes|string|
 |description|snippet description|no|string|
-|open|open/close status of a folder|no|boolean|
+|open|whether to open the folder in its initial state|no|boolean|
 |form|form name before executing the snippet|no|string|
 |snippet|snippet name to execute|yes(only if it is not a folder)|string|
-|domain|domain permitted to execute snippet|no|string(Regex)
+|domain|domain permitted to execute snippet|no|string(Regex)|
+|autoRun|whether to run snippet automatically(only if it matches to domain permitted)|no|boolean|
 |children|children element|no|array|
 
 ### your_snippet.js
@@ -50,7 +51,7 @@ To display snippet result in Chrome(Firefox) extension, you have to send a messa
 ```js
 chrome.runtime.sendMessage({ result: {
   component: 'notification',
-  message: date.toString(),
+  message: new Date().toString(),
   type: 'info'
 }})
 ```
@@ -130,6 +131,9 @@ The form consists of three elements.
     |:-|:-|:-|:-|
     |text|text|no|string(default:`cancel`)|
     |class|class attribute|no|string|
+
+### Content Scripts
+When setting `autoRun` option to `true` in `tree.js`, the snippet is executed as `Content Scripts`.
 
 ## Customize
 ### Bulma
