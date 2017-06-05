@@ -1,4 +1,6 @@
 ![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)
+![Chrome passing](https://img.shields.io/badge/chrome-passing-brightgreen.svg?style=flat)
+![Firefox passing](https://img.shields.io/badge/firefox-passing-brightgreen.svg?style=flat)
 
 run-snippets
 ======================
