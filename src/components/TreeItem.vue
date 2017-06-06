@@ -120,7 +120,7 @@ export default {
         return false
       }
       
-      if (this.model.domain && url.match(new RegExp(this.model.domain, 'i')) === null) {
+      if (this.model.domain && !(new RegExp(this.model.domain, 'i')).test(url)) {
         error.message = `${message.ERROR_NOT_MATCHED_DOMAIN}: ${this.model.domain}`
         this.$emit('result', error)
         return false
