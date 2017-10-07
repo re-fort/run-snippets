@@ -26,7 +26,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        use: 'babel-loader',
         exclude: /node_modules/
       },
       {
@@ -45,19 +45,21 @@ module.exports = {
       },
       {
         test: /\.pug$/,
-        loaders: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].html'
+        loaders: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].html'
+            }
+          },
+          {
+            loader: 'pug-html-loader',
           }
-        },
-        {
-          loader: 'pug-html-loader',
-        }]
+        ]
       },
       {
         test: /\.(sass|scss)$/,
-        loader: extractTextPlugin.extract('css-loader?minimize!sass-loader?minimize')
+        use: extractTextPlugin.extract('css-loader?minimize!sass-loader?minimize')
       },
       {
         test: /\.(svg|eot|ttf)(\?v=\d+\.\d+\.\d+)?$/,
