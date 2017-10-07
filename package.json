@@ -10,6 +10,7 @@
     "build:app": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "build:snippet": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.snippets.config.babel.js",
     "clean": "rimraf ./dist",
+    "lint": "eslint src",
     "zip:firefox": "cd dist && cross-zip ./ ../run-snippets.xpi",
     "zip:chrome": "cd dist && cross-zip ./ ../run-snippets.zip"
   },
@@ -21,6 +22,8 @@
     "cross-env": "^5.0.5",
     "cross-zip-cli": "^1.0.0",
     "css-loader": "^0.28.7",
+    "eslint": "^4.8.0",
+    "eslint-plugin-vue": "beta",
     "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.5",
     "font-awesome": "^4.7.0",
