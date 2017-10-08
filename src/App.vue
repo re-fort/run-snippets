@@ -104,4 +104,16 @@ body {
   min-width: 600px;
   min-height: 400px;
 }
+
+.messages {
+  top: 0px !important;
+}
+
+.messages .message {
+  right: 0% !important;
+}
+
+.notifications {
+  top: 0px !important;
+}
 </style>

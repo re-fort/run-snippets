@@ -18,13 +18,3 @@ export const openMessage = (propsData = {
   })
 }
 </script>
-
-<style lang="scss">
-.messages {
-  top: 0px !important;
-}
-
-.messages .message {
-  right: 0% !important;
-}
-</style>

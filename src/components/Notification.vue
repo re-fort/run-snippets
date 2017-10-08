@@ -18,9 +18,3 @@ export const openNotification = (propsData = {
   })
 }
 </script>
-
-<style lang="scss">
-.notifications {
-  top: 0px !important;
-}
-</style>
