@@ -13,8 +13,8 @@
             | [{{ open ? '-' : '+' }}]
       ul(class="menu-list", v-show="open", v-if="isFolder")
         tree-item(
-          v-for="model in model.children",
-          :key="model",
+          v-for="(model, index) in model.children",
+          :key="index",
           :model="model",
           @result="callParent"
         )
@@ -48,7 +48,7 @@ export default {
         this.model.children.length
     },
     getTooltipSize: function () {
-      return this.model.description && this.model.description.length > 20 ? 'large' : 'medium' 
+      return this.model.description && this.model.description.length > 20 ? 'large' : 'medium'
     }
   },
   methods: {
@@ -119,7 +119,7 @@ export default {
         this.$emit('result', error)
         return false
       }
-      
+
       if (this.model.domain && !(new RegExp(this.model.domain, 'i')).test(url)) {
         error.message = `${message.ERROR_NOT_MATCHED_DOMAIN}: ${this.model.domain}`
         this.$emit('result', error)
