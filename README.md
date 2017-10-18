@@ -6,6 +6,8 @@
 run-snippets
 ======================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/re-fort/run-snippets.svg)](https://greenkeeper.io/)
+
 Chrome and Firefox extension to run arbitrarily snippets.
 To use this extension, you have to add snippets manually and load a built package.
 Since it's bundled with `webpack`, you can import npm packages and use ES2015 syntax in your snippets.
