@@ -27,6 +27,13 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        test: /\.js$/,
+        use: 'webpack-espower-loader',
+        include: [
+          path.resolve(__dirname, 'test'),
+        ],
+      },
+      {
         test: /\.json$/,
         loader: 'file-loader',
         options: {
@@ -76,7 +83,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.runtime.esm.js'
+      'vue$': 'vue/dist/vue.runtime.esm.js',
+      'src': path.resolve(__dirname, './src'),
+      '@': process.env.NODE_ENV === 'demo' || process.env.NODE_ENV === 'test' ? path.resolve(__dirname, `./${process.env.NODE_ENV}`) : path.resolve(__dirname, './src'),
     }
   },
   plugins: [
