@@ -2,14 +2,15 @@
 [![CircleCI](https://circleci.com/gh/re-fort/run-snippets.svg?style=shield)](https://circleci.com/gh/re-fort/run-snippets)
 ![Chrome passing](https://img.shields.io/badge/chrome-passing-brightgreen.svg?style=flat)
 ![Firefox passing](https://img.shields.io/badge/firefox-passing-brightgreen.svg?style=flat)
+[![Greenkeeper badge](https://badges.greenkeeper.io/re-fort/run-snippets.svg)](https://greenkeeper.io/)
 
 run-snippets
 ======================
 
-任意のスニペットを実行するChrome & Firefox拡張機能です。  
-この拡張機能を使用するには、手動でスニペットを作成し、ビルドしたパッケージを読み込む必要があります。  
-`webpack`でバンドルしているので、スニペット内でnpmパッケージをインポートしたり、ES2015構文を使用可能です。  
-デモ実装は[demo](https://github.com/re-fort/run-snippets/tree/master/demo)フォルダを参照してください。  
+任意のスニペットを実行するChrome & Firefox拡張機能です。
+この拡張機能を使用するには、手動でスニペットを作成し、ビルドしたパッケージを読み込む必要があります。
+`webpack`でバンドルしているので、スニペット内でnpmパッケージをインポートしたり、ES2015構文を使用可能です。
+デモ実装は[demo](https://github.com/re-fort/run-snippets/tree/master/demo)フォルダを参照してください。
 
 ## デモ
 ![screenshot](https://user-images.githubusercontent.com/3705391/31721937-aef4056e-b455-11e7-892e-23726725dc14.gif)
@@ -74,7 +75,7 @@ chrome.runtime.sendMessage({ result: {
 |setLocalStorage|array(Local Storageにセットするキー、値)|
 |removeLocalStorage|array(Local Storageにセットするキー)|
 
-入力フォームを使用した場合、`form.id`といった形式で入力した値を参照できます。  
+入力フォームを使用した場合、`form.id`といった形式で入力した値を参照できます。
 ローカルストレージに設定した値は、`ls.key`といった形式で参照できます。
 
 ### your_form.js
