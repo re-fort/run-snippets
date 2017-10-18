@@ -1,4 +1,5 @@
 ![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)
+[![CircleCI](https://circleci.com/gh/re-fort/run-snippets.svg?style=shield)](https://circleci.com/gh/re-fort/run-snippets)
 ![Chrome passing](https://img.shields.io/badge/chrome-passing-brightgreen.svg?style=flat)
 ![Firefox passing](https://img.shields.io/badge/firefox-passing-brightgreen.svg?style=flat)
 
@@ -8,12 +9,12 @@ run-snippets
 Chrome and Firefox extension to run arbitrarily snippets.  
 To use this extension, you have to add snippets manually and load a built package.  
 Since it's bundled with `webpack`, you can import npm packages and use ES2015 syntax in your snippets.  
-Refer to the [demo](https://github.com/re-fort/run-snippets/tree/demo) branch for an implementation sample.
+Refer to the [demo](https://github.com/re-fort/run-snippets/tree/master/demo) folder for an implementation sample.  
 
 [日本語](https://github.com/re-fort/run-snippets/blob/master/README_ja.md)
 
 ## demo
-![screenshot](https://raw.githubusercontent.com/re-fort/run-snippets/demo/demo/run-snippets.gif)
+![screenshot](https://user-images.githubusercontent.com/3705391/31721937-aef4056e-b455-11e7-892e-23726725dc14.gif)
 
 ## Setup
 ```
