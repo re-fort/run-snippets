@@ -2,6 +2,7 @@
 [![CircleCI](https://circleci.com/gh/re-fort/run-snippets.svg?style=shield)](https://circleci.com/gh/re-fort/run-snippets)
 ![Chrome passing](https://img.shields.io/badge/chrome-passing-brightgreen.svg?style=flat)
 ![Firefox passing](https://img.shields.io/badge/firefox-passing-brightgreen.svg?style=flat)
+[![Greenkeeper badge](https://badges.greenkeeper.io/re-fort/run-snippets.svg)](https://greenkeeper.io/)
 
 run-snippets
 ======================
