@@ -6,7 +6,9 @@
   },
   "extends": ["plugin:vue/recommended"],
   "globals": {
-    "Vue": false
+    "Vue": false,
+    "chrome": false,
+    "form": false
   },
   "parserOptions": {
     "ecmaVersion": 2015,
