@@ -1,17 +1,18 @@
 ![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)
+[![CircleCI](https://circleci.com/gh/re-fort/run-snippets.svg?style=shield)](https://circleci.com/gh/re-fort/run-snippets)
 ![Chrome passing](https://img.shields.io/badge/chrome-passing-brightgreen.svg?style=flat)
 ![Firefox passing](https://img.shields.io/badge/firefox-passing-brightgreen.svg?style=flat)
 
 run-snippets
 ======================
 
-任意のスニペットを実行するChrome & Firefox拡張機能です。  
-この拡張機能を使用するには、手動でスニペットを作成し、ビルドしたパッケージを読み込む必要があります。  
-`webpack`でバンドルしているので、スニペット内でnpmパッケージをインポートしたり、ES2015構文を使用可能です。  
-デモ実装は[demo](https://github.com/re-fort/run-snippets/tree/demo)ブランチを参照してください。
+任意のスニペットを実行するChrome & Firefox拡張機能です。
+この拡張機能を使用するには、手動でスニペットを作成し、ビルドしたパッケージを読み込む必要があります。
+`webpack`でバンドルしているので、スニペット内でnpmパッケージをインポートしたり、ES2015構文を使用可能です。
+デモ実装は[demo](https://github.com/re-fort/run-snippets/tree/master/demo)フォルダを参照してください。
 
 ## デモ
-![screenshot](https://raw.githubusercontent.com/re-fort/run-snippets/demo/demo/run-snippets.gif)
+![screenshot](https://user-images.githubusercontent.com/3705391/31721937-aef4056e-b455-11e7-892e-23726725dc14.gif)
 
 ## セットアップ
 ```
@@ -28,7 +29,7 @@ npm install or yarn install
 1. `npm run build`
 
 ## npm scripts
-- `npm run dev` webpackでのファイル監視を開始します。 
+- `npm run dev` webpackでのファイル監視を開始します。
 - `npm run build` 圧縮しソースマップ付きでビルドを行います。
 - `npm run zip:firefox` Firefox用にxpiファイルを作成します。
 - `npm run zip:chrome` Chrome用にzipファイルを作成します。
@@ -73,7 +74,7 @@ chrome.runtime.sendMessage({ result: {
 |setLocalStorage|array(Local Storageにセットするキー、値)|
 |removeLocalStorage|array(Local Storageにセットするキー)|
 
-入力フォームを使用した場合、`form.id`といった形式で入力した値を参照できます。  
+入力フォームを使用した場合、`form.id`といった形式で入力した値を参照できます。
 ローカルストレージに設定した値は、`ls.key`といった形式で参照できます。
 
 ### your_form.js
