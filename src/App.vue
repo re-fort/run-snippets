@@ -8,7 +8,7 @@
 <script>
 import Vue from 'vue'
 import TreeItem from './components/TreeItem.vue'
-import { treeData } from './config/tree.js'
+import { treeData } from '@/config/tree.js'
 import { message } from './config/message.js'
 import { openNotification } from './components/Notification.vue'
 import { openMessage } from './components/Message.vue'
@@ -85,8 +85,9 @@ export default {
       input.value = text
       input.focus()
       input.select()
-      document.execCommand('Copy')
+      let result = document.execCommand('copy')
       input.remove()
+      return result
     },
     setLocalStorage: function (key, value) {
       localStorage.setItem(key, value)

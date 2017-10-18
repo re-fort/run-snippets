@@ -5,27 +5,27 @@
     div(class="field" v-for="field in form.fields" slot="body")
       label(class="label") {{ field.label }}
       p(class="control" v-if="field.type === 'text'", :class="getIconClass(field.icon)")
-        input(class="input" type="text", :id="field.id", :value="field.value", :class="field.class", :disabled="field.disabled")
+        input(class="input" type="text", :id="field.id", :ref="field.id", :value="field.value", :class="field.class", :disabled="field.disabled")
         span(class="icon" v-if="field.icon", :class="field.icon.class")
           i(class="fa", :class="field.icon.type")
       p(class="control" v-if="field.type === 'password'", :class="getIconClass(field.icon)")
-        input(class="input" type="password", :id="field.id", :value="field.value", :class="field.class", :disabled="field.disabled")
+        input(class="input" type="password", :id="field.id", :ref="field.id", :value="field.value", :class="field.class", :disabled="field.disabled")
         span(class="icon" v-if="field.icon", :class="field.icon.class")
           i(class="fa", :class="field.icon.type")
       p(class="control" v-else-if="field.type === 'checkbox'")
         label(class="checkbox", :disabled="field.disabled")
-          input(type="checkbox", :id="field.id", :class="field.class", :disabled="field.disabled")
+          input(type="checkbox", :id="field.id", :ref="field.id", :class="field.class", :disabled="field.disabled")
           | {{ field.value }}
       p(class="control" v-else-if="field.type === 'radio'")
         label(class="radio" v-for="radio in field.value", :disabled="field.disabled")
-          input(type="radio", :name="field.id", :value="radio.value", :class="field.class", :checked="true", :disabled="field.disabled")
+          input(type="radio", :name="field.id", :ref="field.id", :value="radio.value", :class="field.class", :checked="true", :disabled="field.disabled")
           | {{ radio.label }}
       p(class="control" v-else-if="field.type === 'select'")
         span(class="select", :class="[{ 'is-disabled': field.disabled }, field.class]")
-          select(:id="field.id", :disabled="field.disabled")
-            option(v-for="option in field.value" :value="option.value") {{ option.label }}
+          select(:id="field.id", :ref="field.id", :disabled="field.disabled")
+            option(v-for="option in field.value", :value="option.value") {{ option.label }}
       p(class="control" v-else-if="field.type === 'textarea'")
-        textarea(class="textarea", :id="field.id") {{ field.value }}
+        textarea(class="textarea", :id="field.id", :ref="field.id") {{ field.value }}
     template(slot="footer" v-if="form.footer")
       a(class="button", :class="form.footer.submit.class", @click="submit")
         | {{ form.footer.submit.text }}
@@ -39,10 +39,10 @@ import { CardModal } from 'vue-bulma-modal'
 export default {
   name: 'modal',
   components: {
-    CardModal
+    CardModal,
   },
   props: {
-    form: Object
+    form: Object,
   },
   data () {
     return {
@@ -54,7 +54,7 @@ export default {
         checkbox: 'input[type="checkbox"]',
         radio: 'input[type="radio"]:checked',
         select: 'select',
-        textarea: 'textarea'
+        textarea: 'textarea',
       }
     }
   },
@@ -67,23 +67,21 @@ export default {
       this.$emit('cancel')
     },
     bindInputs: function () {
-      for (let control of this.controls) {
-        document.querySelectorAll(this.selector[control]).forEach(el => this.bind(control, el))
-      }
-    },
-    bind: function (control, el) {
-      switch (control) {
-        case 'text':
-        case 'select':
-        case 'textarea':
-          this.inputs[el.id] = el.value
-          break
-        case 'checkbox':
-          this.inputs[el.id] = el.checked
-          break
-        case 'radio':
-          this.inputs[el.name] = el.value
-          break
+      for (let field of this.form.fields) {
+        switch (field.type) {
+          case 'text':
+          case 'password':
+          case 'select':
+          case 'textarea':
+            this.inputs[field.id] = this.$refs[field.id][0].value
+            break
+          case 'checkbox':
+            this.inputs[field.id] = this.$refs[field.id][0].checked
+            break
+          case 'radio':
+            this.$refs[field.id].forEach(ref => { if (ref.checked) this.inputs[field.id] = ref.value })
+            break
+        }
       }
     },
     getIconClass: function (icon) {

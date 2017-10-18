@@ -1,12 +1,12 @@
 const path = require('path')
 const webpack = require('webpack')
 const glob = require('glob')
-
+const _target = process.env.NODE_ENV === 'demo' || process.env.NODE_ENV === 'test' ? process.env.NODE_ENV : 'src'
 const _snippets = 'snippets'
 let snippets = {}
 
-glob.sync(`./src/${_snippets}/**/*.js`).map((file) => {
-  let pathname = file.replace(`./src/${_snippets}/`, '').replace('.js', '')
+glob.sync(`./${_target}/${_snippets}/**/*.js`).map((file) => {
+  let pathname = file.replace(`./${_target}/${_snippets}/`, '').replace('.js', '')
   snippets[`${_snippets}/${pathname}`] = file
 })
 

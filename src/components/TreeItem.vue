@@ -1,7 +1,7 @@
 <template lang="pug">
   li
     div(:class="{'is-loading': !isFolder && isRunning}", class="control")
-      modal(:visible="show", :form="form", v-show="show", @submit="runSnippet", @cancel="closeModal")
+      modal(:visible="show", :form="form", v-if="show", @submit="runSnippet", @cancel="closeModal")
       tooltip(:label="model.description", :size="getTooltipSize", placement="top-right")
         a(:class="{bold: isFolder, 'menu-label': isFolder}", @click="click")
           span(v-if="isFolder" class="icon is-small")
@@ -44,8 +44,7 @@ export default {
   },
   computed: {
     isFolder: function () {
-      return this.model.children &&
-        this.model.children.length
+      return this.model && this.model.children && this.model.children.length
     },
     getTooltipSize: function () {
       return this.model.description && this.model.description.length > 20 ? 'large' : 'medium'
@@ -75,7 +74,8 @@ export default {
       if (this.show) this.show = false
       this.checkBefore()
       .then(url => {
-        if (this.check(url)) {
+        const [hasError, error] = this.hasError(this.model, url)
+        if (!hasError) {
           this.addListener()
           this.isRunning = true
           chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
@@ -83,6 +83,8 @@ export default {
               chrome.tabs.executeScript(tab[0].id, { file: `./snippets/${this.model.snippet}.js` })
             })
           })
+        } else {
+          this.$emit('result', error)
         }
       })
       .catch(e => {
@@ -111,28 +113,26 @@ export default {
         }
       })
     },
-    check: function (url) {
+    hasError: function (model, url) {
       let error = { component: 'message', type: 'danger' }
 
-      if (typeof this.model.snippet === 'undefined') {
+      if (typeof model.snippet === 'undefined') {
         error.message = `${message.ERROR_NOT_DEFINED_SNIPPET}`
-        this.$emit('result', error)
-        return false
+        return [true, error]
       }
 
-      if (this.model.domain && !(new RegExp(this.model.domain, 'i')).test(url)) {
-        error.message = `${message.ERROR_NOT_MATCHED_DOMAIN}: ${this.model.domain}`
-        this.$emit('result', error)
-        return false
+      if (model.domain && !(new RegExp(model.domain, 'i')).test(url)) {
+        error.message = `${message.ERROR_NOT_MATCHED_DOMAIN}: ${model.domain}`
+        return [true, error]
       }
 
-      return true
+      return [false]
     },
     addListener: function () {
       const _this = this
       chrome.runtime.onMessage.addListener(
         function listener(request){
-          chrome.runtime.onMessage.removeListener(listener);
+          chrome.runtime.onMessage.removeListener(listener)
           _this.$emit('result', request.result)
           _this.isRunning = false
         }
@@ -143,10 +143,10 @@ export default {
     },
     showModal: function () {
       let defaultForm = { header: {}, footer: { submit: { text: 'OK', class: 'is-primary  ' }, cancel: { text: 'cancel' } } }
-      this.form = this.mergeDeep(defaultForm, require(`../forms/${this.model.form}.js`))
+      this.form = this.mergeDeep(defaultForm, require(`@/forms/${this.model.form}.js`))
       this.show = true
       // delete cache(use template literal instead of variable)
-      delete require.cache[require.resolve(`../forms/${this.model.form}.js`)]
+      delete require.cache[require.resolve(`@/forms/${this.model.form}.js`)]
     },
     closeModal: function () {
       this.show = false
