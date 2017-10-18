@@ -175,15 +175,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.bold {
-  font-weight: bold;
-}
+<style lang="sass">
+.bold
+  font-weight: bold
 
-ul {
-  padding-left: 1em;
-  line-height: 1.5em;
-  list-style-type: none;
-  cursor: pointer;
-}
+ul
+  padding-left: 1em
+  line-height: 1.5em
+  list-style-type: none
+  cursor: pointer
 </style>

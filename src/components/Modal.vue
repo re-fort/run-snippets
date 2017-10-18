@@ -92,8 +92,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.select select {
-  padding-right: 2.5em;
-}
+<style lang="sass">
+.select select
+  padding-right: 2.5em
 </style>

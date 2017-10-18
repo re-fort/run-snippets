@@ -99,22 +99,18 @@ export default {
 }
 </script>
 
-<style lang="scss">
-body {
-  margin-top: 20px;
-  min-width: 600px;
-  min-height: 400px;
-}
+<style lang="sass">
+body
+  margin-top: 20px
+  min-width: 600px
+  min-height: 400px
 
-.messages {
-  top: 0px !important;
-}
+.messages
+  top: 0px !important
 
-.messages .message {
-  right: 0% !important;
-}
+.messages .message
+  right: 0% !important
 
-.notifications {
-  top: 0px !important;
-}
+.notifications
+  top: 0px !important
 </style>
